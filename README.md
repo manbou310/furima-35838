@@ -9,7 +9,7 @@
 |first_name_zenkaku|string     |null: false  |
 |last_name_kana    |string     |null: false  |
 |first_name_kana   |string     |null: false  |
-|birth_date        |string     |null: false  |
+|birth_day         |date       |null: false  |
 
 
 ### Association
@@ -24,17 +24,17 @@
 |-------------------|-----------|-------------------------------|
 |user               |reference  |null: false, foreign_key: true |
 |item_name          |string     |null: false                    |
-|description_id     |integer    |null: false                    |
-|category _id       |integer    |null: false                    |
+|description_id     |text       |null: false                    |
+|category_id        |integer    |null: false                    |
+|status_id          |integer    |null: false                    |
 |shopping_charge_id |integer    |null: false                    |
 |ship_form_id       |integer    |null: false                    |
 |delivery_time_id   |integer    |null: false                    |
-|price              |reference  |null: false                    |
+|price              |integer    |null: false                    |
 
 
 ### Association
 - belongs_to :user
-- has_one :address
 - has_one :records_list
 
 
@@ -47,13 +47,12 @@
 |prefecture_id      |integer    |null: false                    |
 |city               |string     |null: false                    |
 |street             |string     |null: false                    |
-|building           |string     |null: false                    |
+|building           |string     |                               |
 |phone_number       |string     |null: false                    |
+|record_lists       |reference  |null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
-- has_one :records_list
+- belongs_to :records_list
 
 
 
@@ -68,4 +67,4 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has one :address
