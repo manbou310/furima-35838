@@ -24,7 +24,7 @@
 |-------------------|-----------|-------------------------------|
 |user               |reference  |null: false, foreign_key: true |
 |item_name          |string     |null: false                    |
-|description_id     |text       |null: false                    |
+|description        |text       |null: false                    |
 |category_id        |integer    |null: false                    |
 |status_id          |integer    |null: false                    |
 |shopping_charge_id |integer    |null: false                    |
@@ -44,12 +44,12 @@
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
 |postal_address     |string     |null: false                    |
-|prefecture_id      |integer    |null: false                    |
+|ship_form_id       |integer    |null: false                    |
 |city               |string     |null: false                    |
 |street             |string     |null: false                    |
 |building           |string     |                               |
 |phone_number       |string     |null: false                    |
-|record_lists       |reference  |null: false, foreign_key: true |
+|record_list        |reference  |null: false, foreign_key: true |
 
 ### Association
 - belongs_to :records_list
