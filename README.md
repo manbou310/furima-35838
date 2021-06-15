@@ -1,25 +1,20 @@
 ## users table
 
-|Column            |Type       |Options     |
-|------------------|-----------|------------|
-|nickname          |string     |null: false |
-|email             |string     |null: false |
-|encrypted_password|string     |null: false |
-|name              |string     |null: false |
-|last_name_zenkaku |string     |null: false |
-|first_name_zenkaku|string     |null: false |
-|last_name_kana    |string     |null: false |
-|first_name_kana   |string     |null: false |
-|birth_year        |string     |null: false |
-|birth_month       |string     |null: false |
-|birth_day         |string     |null: false |
+|Column            |Type       |Options      |
+|------------------|-----------|-------------|
+|nickname          |string     |null: false  |
+|email             |string     |unique: true |
+|encrypted_password|string     |null: false  |
+|last_name_zenkaku |string     |null: false  |
+|first_name_zenkaku|string     |null: false  |
+|last_name_kana    |string     |null: false  |
+|first_name_kana   |string     |null: false  |
+|birth_date        |string     |null: false  |
 
 
 ### Association
 - has_many :items
-- has_many :addresses
-- has_one :records_list
-
+- has_many :records_lists
 
 
 
@@ -48,12 +43,11 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|items              |reference  |null: false, foreign_key: true |
 |postal_address     |string     |null: false                    |
 |prefecture_id      |integer    |null: false                    |
 |city               |string     |null: false                    |
 |street             |string     |null: false                    |
-|building           |string     |unique: true                    |
+|building           |string     |null: false                    |
 |phone_number       |string     |null: false                    |
 
 ### Association
@@ -65,13 +59,13 @@
 
 ## record_lists table
 
-|Column             |Type       |Options                        |
-|-------------------|-----------|-------------------------------|
-|users              |reference  |null: false, foreign_key: true |
-|items              |reference  |null: false, foreign_key: true |
+|Column            |Type       |Options                        |
+|------------------|-----------|-------------------------------|
+|user              |reference  |null: false, foreign_key: true |
+|item              |reference  |null: false, foreign_key: true |
 
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- belongs_to :item
+- belongs_to :address
