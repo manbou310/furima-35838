@@ -14,7 +14,7 @@
 
 ### Association
 - has_many :items
-- has_many :records_lists
+- has_many :record_lists
 
 
 
@@ -35,7 +35,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :records_list
+- has_one :record_list
 
 
 
@@ -52,7 +52,7 @@
 |record_list        |reference  |null: false, foreign_key: true |
 
 ### Association
-- belongs_to :records_list
+- belongs_to :record_list
 
 
 
