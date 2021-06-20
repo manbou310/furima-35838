@@ -22,7 +22,7 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|user               |reference  |null: false, foreign_key: true |
+|user               |references |null: false, foreign_key: true |
 |item_name          |string     |null: false                    |
 |description        |text       |null: false                    |
 |category_id        |integer    |null: false                    |
@@ -49,7 +49,7 @@
 |street             |string     |null: false                    |
 |building           |string     |                               |
 |phone_number       |string     |null: false                    |
-|record_list        |reference  |null: false, foreign_key: true |
+|record_list        |references  |null: false, foreign_key: true |
 
 ### Association
 - belongs_to :record_list
