@@ -28,27 +28,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'category_idが1では登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it 'status_idが1では登録できない' do
-        @item.status_id = '1'
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
       it 'shopping_charge_idが1では登録できない' do
-        @item.shopping_charge_id = '1'
+        @item.shopping_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shopping charge must be other than 1")
       end
       it 'ship_form_idが1では登録できない' do
-        @item.ship_form_id = '1'
+        @item.ship_form_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship form must be other than 1")
       end
       it 'delivery_time_idが1では登録できない' do
-        @item.delivery_time_id = '1'
+        @item.delivery_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time must be other than 1")
       end
@@ -64,6 +64,16 @@ RSpec.describe Item, type: :model do
       end
       it 'priceが半角数字でない場合出品できない' do
         @item.price = 'ｱｲｳeo'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceが半角英数字混合では出品できない' do
+        @item.price = '123abc'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceが半角英字のみでは出品できない' do
+        @item.price = 'abcdef'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
