@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-     render :index
+    redirect_to root_path
   end
 
   
