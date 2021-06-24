@@ -43,13 +43,13 @@
 
 |Column             |Type       |Options                        |
 |-------------------|-----------|-------------------------------|
-|postal_address     |string     |null: false                    |
+|postcode           |string     |null: false                    |
 |ship_form_id       |integer    |null: false                    |
 |city               |string     |null: false                    |
 |street             |string     |null: false                    |
 |building           |string     |                               |
 |phone_number       |string     |null: false                    |
-|record_list        |references  |null: false, foreign_key: true |
+|record_list        |references |null: false, foreign_key: true |
 
 ### Association
 - belongs_to :record_list
@@ -67,4 +67,4 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has one :address
+- has_one :address
