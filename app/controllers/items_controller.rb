@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only:[:new,:create,:edit,:update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :identification, only: [:edit, :update, :destroy]
+  before_action :sale_check, only:[:edit, :update, :destroy]
 
 
   def index
@@ -28,12 +29,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-
-      if @item.update(item_params)
-        redirect_to item_path
-      else
-        render :show
-      end
+    if @item.update(item_params)
+      redirect_to item_path
+    else
+      render :show
+    end
   end
 
   def destroy
@@ -54,6 +54,12 @@ class ItemsController < ApplicationController
 
   def identification
     unless @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def sale_check
+    if @item.record_list.present?
       redirect_to root_path
     end
   end
