@@ -2,7 +2,6 @@ class RecordListsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
   before_action :user_check
-  before_action :sale_check
 
   def index
     @record_list_address = RecordListAddress.new
@@ -40,13 +39,7 @@ private
   end
 
   def user_check
-    if @item.user_id == current_user.id
-      redirect_to root_path
-    end
-  end
-
-  def sale_check
-    if @item.record_list.present?
+    if  @item.user_id == current_user.id || @item.record_list.present?
       redirect_to root_path
     end
   end
