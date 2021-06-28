@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe RecordListAddress, type: :model do
   before do
-    @record_list_address = FactoryBot.build(:record_list_address)
+    item = FactoryBot.create(:item)
+    user = FactoryBot.create(:user)
+    @record_list_address = FactoryBot.build(:record_list_address, user_id: user.id, item_id: item.id)
+    sleep(0.02)
   end
 
   describe '商品購入' do
@@ -57,14 +60,23 @@ RSpec.describe RecordListAddress, type: :model do
         @record_list_address.valid?
         expect(@record_list_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号は11桁以内でなければ購入できない' do
+      it '電話番号は11桁以上では購入できない' do
         @record_list_address.phone_number = '123456789012'
         @record_list_address.valid?
         expect(@record_list_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
-
+      end
+      it '電話番号は9桁以内では購入できない' do
+        @record_list_address.phone_number = '123456789'
+        @record_list_address.valid?
+        expect(@record_list_address.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
       end
       it '電話番号は半角数字でなければ購入できない' do
         @record_list_address.phone_number = '１２３４５６７８９０'
+        @record_list_address.valid?
+        expect(@record_list_address.errors.full_messages).to include("Phone number is not a number")
+      end
+      it '電話番号は半角数字のみでなければ購入できない' do
+        @record_list_address.phone_number = '１２３４５67890'
         @record_list_address.valid?
         expect(@record_list_address.errors.full_messages).to include("Phone number is not a number")
       end

@@ -8,7 +8,7 @@ class RecordListAddress
     validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :city
     validates :street
-    validates :phone_number,numericality: { only_integer: true }, length: { maximum: 11 }
+    validates :phone_number,numericality: { only_integer: true }, length: { in: 10..11 }
     validates :token
   end
   validates :ship_form_id,numericality: { other_than: 1 } 

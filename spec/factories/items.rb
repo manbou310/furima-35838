@@ -1,5 +1,4 @@
 FactoryBot.define do
-  
   factory :item do
     item_name            {'test'}
     description          {'test'}
