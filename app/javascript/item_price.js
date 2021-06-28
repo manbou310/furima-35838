@@ -1,10 +1,10 @@
 window.addEventListener('load', () => {
   //販売価格の情報取得
   const priceInput = document.getElementById("item-price");
+  if (!priceInput){ return false;}
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
 
-  
   //販売手数料の表示
   const addTaxDom = document.getElementById("add-tax-price");
   addTaxDom.innerHTML = Math.floor(inputValue * 0.1);
